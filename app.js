@@ -3,6 +3,7 @@ const Constants = require('./constants');
 const path = require('path');
 const mongoose = require('mongoose');
 const CampGround = require('./models/campground');
+const morgan = require('morgan');
 const methodOverride = require('method-override');
 
 mongoose.connect(Constants.dbUrl,{
@@ -20,6 +21,14 @@ const app = express();
 app.use(express.urlencoded({
     extended:true
 }));
+
+app.use(morgan('tiny'));
+
+app.use((req,res,next)=>{
+    req.requestTime = Date.now();
+    return next();
+});
+
 app.use(methodOverride('_method'));
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
@@ -75,6 +84,10 @@ app.post('/campgrounds', async (req,res)=>{
     await newCamp.save();
     res.redirect(`/campgrounds/${newCamp._id}`);
 });
+
+app.use((req,res)=>{
+    res.status(404).send("Page Not Found");
+})
 
 app.listen(Constants.port,()=>{
     console.log(`Listening on port ${Constants.port}`)
