@@ -2,6 +2,7 @@ const express = require('express');
 const Constants = require('./constants');
 const path = require('path');
 const mongoose = require('mongoose');
+const ejsMate = require('ejs-mate');
 const CampGround = require('./models/campground');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
@@ -29,6 +30,7 @@ app.use((req,res,next)=>{
     return next();
 });
 
+app.engine('ejs',ejsMate);
 app.use(methodOverride('_method'));
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
