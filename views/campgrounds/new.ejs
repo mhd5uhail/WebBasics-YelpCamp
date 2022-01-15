@@ -2,32 +2,37 @@
 <div class="row">
     <h1 class="text-center">New CampGround</h1>
     <div class="col-6 offset-3">
-        <form id="newcampform" action="/campgrounds" method="POST">
+        <form id="newcampform" action="/campgrounds" method="POST" novalidate class="form-validate">
             <div class="mb-3"> 
                 <label class="form-label" for="title">Enter title</label>
-                <input class="form-control" type="text" id="title" name="campground[title]">
+                <input class="form-control" type="text" id="title" name="campground[title]" required>
+                <div class="valid-feedback">Looks Good</div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="location">Enter location</label>
-                <input class="form-control" type="text" id="location" name="campground[location]">
+                <input class="form-control" type="text" id="location" name="campground[location]"required>
+                <div class="valid-feedback">Looks Good</div>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="price">Campground Price</label>
                 <div class="input-group">
                     <span class="input-group-text">$</span>
-                    <input name="campground[price]" id="price" type="text" placeholder="0.00" class="form-control" aria-label="price-label">
+                    <input name="campground[price]" id="price" type="text" placeholder="0.00" class="form-control" aria-label="price-label" required>
+                    <div class="valid-feedback">Looks Good</div>
                 </div>
             </div>
 
             <div class="mb-3">
                 <label class="form-label" for="image">Image Url</label>
-                <input class="form-control" type="text" id="image" name="campground[image]">
+                <input class="form-control" type="text" id="image" name="campground[image]" required>
+                <div class="valid-feedback">Looks Good</div>
             </div>
 
             <div class="form-floating mb-3">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="campground[description]" ></textarea>
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="campground[description]" required></textarea>
                 <label for="floatingTextarea2">Description</label>
+                <div class="valid-feedback">Looks Good</div>
             </div>
 
             <div>
